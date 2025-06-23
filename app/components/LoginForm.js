@@ -19,7 +19,9 @@ const LoginForm = () => {
     setIsLoading(true)
 
     try {
+      console.log('Form submitted with:', { email, password })
       const result = await login(email, password)
+      console.log('Login result:', result)
       
       if (result.success) {
         router.push('/dashboard')
@@ -27,18 +29,37 @@ const LoginForm = () => {
         setError(result.message || 'Login failed')
       }
     } catch (error) {
+      console.error('Login error:', error)
       setError('An unexpected error occurred')
     } finally {
       setIsLoading(false)
     }
   }
 
+  // Quick fill function for testing
+  const fillTestCredentials = (type) => {
+    switch(type) {
+      case 'admin':
+        setEmail('headmaster@magmax.com')
+        setPassword('headmaster123')
+        break
+      case 'teacher':
+        setEmail('james_owoo@magmax.com')
+        setPassword('teacher_james_007')
+        break
+      case 'admin2':
+        setEmail('esther@magmax.com')
+        setPassword('esther_admin_123')
+        break
+    }
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="min-h-screen mx-4 flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            School Management System
+            MagMax School Portal
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Sign in to your account
@@ -95,14 +116,21 @@ const LoginForm = () => {
         </form>
 
         <div className="mt-8 p-4 bg-blue-50 rounded-md">
-          <h3 className="text-sm font-medium text-blue-800 mb-2">Test Accounts:</h3>
-          <div className="text-xs text-blue-600 space-y-1">
-            <div><strong>Admin:</strong> admin@school.com / admin123</div>
-            <div><strong>Teacher 1:</strong> john.doe@school.com / teacher123</div>
-            <div><strong>Teacher 2:</strong> jane.smith@school.com / teacher123</div>
+          <h3 className="text-sm font-medium text-blue-800 mb-2">Test Accounts (Click to fill):</h3>
+          <div className="text-xs text-blue-600 space-y-2">
+            <div className="cursor-pointer hover:bg-blue-100 p-1 rounded" onClick={() => fillTestCredentials('admin')}>
+              <strong>Admin:</strong> headmaster@magmax.com / headmaster123
+            </div>
+            <div className="cursor-pointer hover:bg-blue-100 p-1 rounded" onClick={() => fillTestCredentials('teacher')}>
+              <strong>Teacher:</strong> james_owoo@magmax.com / teacher_james_007
+            </div>
+            <div className="cursor-pointer hover:bg-blue-100 p-1 rounded" onClick={() => fillTestCredentials('admin2')}>
+              <strong>Admin 2:</strong> esther@magmax.com / esther_admin_123
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   )
 }

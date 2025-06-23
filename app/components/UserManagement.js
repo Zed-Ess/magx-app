@@ -1,8 +1,8 @@
 // components/UserManagement.js
 'use client'
 import { useState, useEffect } from 'react'
-import { createUser, getAllUsers, USER_ROLES } from '@/lib/db'
-import { useAuth } from '@/contexts/AuthContext'
+import { createUser, getAllUsers, USER_ROLES } from '../lib/db'
+import { useAuth } from '../contexts/AuthContext'
 
 const UserManagement = () => {
   const [users, setUsers] = useState([])

@@ -1,6 +1,6 @@
 
 // app/teachers/page.js
-import { TeacherAndAdmin } from '@/components/ProtectedRoute'
+import { TeacherAndAdmin } from '../components/ProtectedRoute'
 
 export default function TeachersPage() {
   return (

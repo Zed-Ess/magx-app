@@ -1,5 +1,5 @@
 // app/admin/page.js
-import { AdminOnly } from '@/components/ProtectedRoute'
+import { AdminOnly } from '../components/ProtectedRoute'
 
 export default function AdminPage() {
   return (

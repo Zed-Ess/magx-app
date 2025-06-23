@@ -1,8 +1,8 @@
 // components/UserManagement.js
 'use client'
 import { useState, useEffect } from 'react'
-import { createUser, getAllUsers, USER_ROLES } from '../lib/db'
-import { useAuth } from '../contexts/AuthContext'
+import { createUser, getActiveUsers, USER_ROLES } from '@/lib/db'
+import { useAuth } from '@/contexts/AuthContext'
 
 const UserManagement = () => {
   const [users, setUsers] = useState([])
@@ -22,10 +22,26 @@ const UserManagement = () => {
     loadUsers()
   }, [])
 
+
   const loadUsers = async () => {
-    const allUsers = await getAllUsers()
-    setUsers(allUsers)
+    try {
+      const result = await getActiveUsers()
+      
+      if (result.success && Array.isArray(result.users)) {
+        setUsers(result.users)
+      } else {
+        setUsers([])
+        // Optionally show an error message
+        setMessage(result.message || 'Failed to load users')
+      }
+    } catch (error) {
+      console.error('Error loading users:', error)
+      setUsers([])
+      setMessage('An error occurred while loading users')
+    }
   }
+
+
 
   const handleCreateUser = async (e) => {
     e.preventDefault()
@@ -109,7 +125,7 @@ const UserManagement = () => {
 
         {showCreateForm && (
           <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">Create New User</h3>
+            <h3 className="text-lg font-medium text-gray-900 mb-4">Add New User</h3>
             <form onSubmit={handleCreateUser} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>

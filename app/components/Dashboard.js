@@ -3,6 +3,7 @@
 import { useAuth } from '@/contexts/AuthContext'
 import { useRouter } from 'next/navigation'
 import { USER_ROLES } from '@/lib/db'
+import Link from 'next/link'
 
 const Dashboard = () => {
   const { user, logout, hasRole, hasAnyRole } = useAuth()
@@ -18,20 +19,23 @@ const Dashboard = () => {
       case USER_ROLES.ADMIN:
         return (
           <div className="space-y-6">
-            <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-red-800 mb-2">Admin Dashboard</h3>
-              <p className="text-red-600 mb-4">Full system access and management capabilities</p>
+            <div className="bg-indigo-50 border border-indigo-100 rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-indigo-800 mb-2">Admin Dashboard</h3>
+              <p className="text-indigo-600 mb-4">Full system access and management capabilities</p>
               <div className="grid grid-cols-2 gap-4">
-                <button className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                <Link 
+                  href="/admin/users" 
+                  className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition-colors text-center"
+                >
                   Manage Users
-                </button>
-                <button className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                </Link>
+                <button className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition-colors">
                   System Settings
                 </button>
-                <button className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                <button className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition-colors">
                   Reports
                 </button>
-                <button className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                <button className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition-colors">
                   School Management
                 </button>
               </div>
@@ -42,21 +46,21 @@ const Dashboard = () => {
       case USER_ROLES.TEACHER:
         return (
           <div className="space-y-6">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-blue-800 mb-2">Teacher Dashboard</h3>
-              <p className="text-blue-600 mb-2">Class: {user.classLevel}</p>
-              <p className="text-blue-600 mb-4">Teacher Code: {user.teacherPassCode}</p>
+            <div className="bg-teal-50 border border-teal-100 rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-teal-800 mb-2">Teacher Dashboard</h3>
+              <p className="text-teal-600 mb-2">Class: {user.classLevel}</p>
+              <p className="text-teal-600 mb-4">Teacher Code: {user.teacherPassCode}</p>
               <div className="grid grid-cols-2 gap-4">
-                <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                <button className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700 transition-colors">
                   My Classes
                 </button>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                <button className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700 transition-colors">
                   Gradebook
                 </button>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                <button className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700 transition-colors">
                   Attendance
                 </button>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                <button className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700 transition-colors">
                   Assignments
                 </button>
               </div>
@@ -67,20 +71,20 @@ const Dashboard = () => {
       case USER_ROLES.STUDENT:
         return (
           <div className="space-y-6">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-green-800 mb-2">Student Dashboard</h3>
-              <p className="text-green-600 mb-4">Access your courses and assignments</p>
+            <div className="bg-emerald-50 border border-emerald-100 rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-emerald-800 mb-2">Student Dashboard</h3>
+              <p className="text-emerald-600 mb-4">Access your courses and assignments</p>
               <div className="grid grid-cols-2 gap-4">
-                <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                <button className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition-colors">
                   My Courses
                 </button>
-                <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                <button className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition-colors">
                   Assignments
                 </button>
-                <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                <button className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition-colors">
                   Grades
                 </button>
-                <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                <button className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition-colors">
                   Schedule
                 </button>
               </div>
@@ -91,20 +95,20 @@ const Dashboard = () => {
       case USER_ROLES.PARENT:
         return (
           <div className="space-y-6">
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-purple-800 mb-2">Parent Dashboard</h3>
-              <p className="text-purple-600 mb-4">Monitor your child's progress</p>
+            <div className="bg-violet-50 border border-violet-100 rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-violet-800 mb-2">Parent Dashboard</h3>
+              <p className="text-violet-600 mb-4">Monitor your child's progress</p>
               <div className="grid grid-cols-2 gap-4">
-                <button className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+                <button className="bg-violet-600 text-white px-4 py-2 rounded hover:bg-violet-700 transition-colors">
                   Child's Grades
                 </button>
-                <button className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+                <button className="bg-violet-600 text-white px-4 py-2 rounded hover:bg-violet-700 transition-colors">
                   Attendance
                 </button>
-                <button className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+                <button className="bg-violet-600 text-white px-4 py-2 rounded hover:bg-violet-700 transition-colors">
                   Messages
                 </button>
-                <button className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+                <button className="bg-violet-600 text-white px-4 py-2 rounded hover:bg-violet-700 transition-colors">
                   Events
                 </button>
               </div>
@@ -120,7 +124,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow">
+      <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div>
@@ -137,7 +141,7 @@ const Dashboard = () => {
               </span>
               <button
                 onClick={handleLogout}
-                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+                className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors"
               >
                 Logout
               </button>
@@ -153,22 +157,22 @@ const Dashboard = () => {
 
           {/* Conditional sections based on roles */}
           {hasAnyRole([USER_ROLES.ADMIN, USER_ROLES.TEACHER]) && (
-            <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-yellow-800 mb-2">
+            <div className="mt-8 bg-amber-50 border border-amber-100 rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-amber-800 mb-2">
                 Staff Section
               </h3>
-              <p className="text-yellow-600">
+              <p className="text-amber-600">
                 This section is visible to administrators and teachers only.
               </p>
             </div>
           )}
 
           {hasRole(USER_ROLES.ADMIN) && (
-            <div className="mt-8 bg-red-50 border border-red-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-red-800 mb-2">
+            <div className="mt-8 bg-indigo-50 border border-indigo-100 rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-indigo-800 mb-2">
                 Admin Only Section
               </h3>
-              <p className="text-red-600">
+              <p className="text-indigo-600">
                 This section is visible to administrators only.
               </p>
             </div>
